@@ -267,6 +267,7 @@ p.section-sub {
 }
 
 /* Admin */
+/* Admin */
 .admin-layout {
   display: flex;
   min-height: calc(100vh - 65px);
@@ -297,8 +298,34 @@ p.section-sub {
   flex: 1;
   padding: 30px;
   overflow-x: auto;
+  min-width: 0;
+  /* allows flex child to shrink below its content width */
 }
 
+@media (max-width: 768px) {
+  .admin-layout {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .admin-sidebar {
+    width: 100%;
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 8px 0;
+  }
+
+  .admin-sidebar a {
+    padding: 10px 16px;
+    white-space: nowrap;
+    font-size: 0.85rem;
+  }
+
+  .admin-main {
+    padding: 18px;
+  }
+}
 table {
   width: 100%;
   border-collapse: collapse;

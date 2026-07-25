@@ -83,7 +83,7 @@ router.get('/mine', requireAuth, async (req, res) => {
 // GET /api/orders/admin/all
 router.get('/admin/all', requireAuth, requireAdmin, async (req, res) => {
   const orders = await query(
-    `SELECT o.*, u.full_name AS customer_name, u.email AS customer_email
+    `SELECT o.*, u.full_name AS customer_name, u.email AS customer_email, u.phone AS customer_phone
      FROM orders o JOIN users u ON u.id = o.user_id
      ORDER BY o.created_at DESC`
   );
@@ -99,6 +99,33 @@ router.put('/:id/status', requireAuth, requireAdmin, async (req, res) => {
   const result = await query('UPDATE orders SET status = $1 WHERE id = $2 RETURNING *', [status, req.params.id]);
   if (result.rowCount === 0) return res.status(404).json({ error: 'Order not found.' });
   res.json({ order: result.rows[0] });
+});
+
+// DELETE /api/orders/:id  (admin deletes an order)
+// order_items has a foreign key to orders, so line items must be removed
+// first, inside the same transaction, or Postgres will reject the delete.
+router.delete('/:id', requireAuth, requireAdmin, async (req, res) => {
+  const client = await pool.connect();
+  try {
+    await client.query('BEGIN');
+
+    await client.query('DELETE FROM order_items WHERE order_id = $1', [req.params.id]);
+    const result = await client.query('DELETE FROM orders WHERE id = $1 RETURNING id', [req.params.id]);
+
+    if (result.rowCount === 0) {
+      await client.query('ROLLBACK');
+      return res.status(404).json({ error: 'Order not found.' });
+    }
+
+    await client.query('COMMIT');
+    res.json({ success: true });
+  } catch (err) {
+    await client.query('ROLLBACK');
+    console.error(err);
+    res.status(500).json({ error: 'Could not delete order.' });
+  } finally {
+    client.release();
+  }
 });
 
 export default router;

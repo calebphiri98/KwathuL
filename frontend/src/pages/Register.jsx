@@ -42,8 +42,14 @@ export default function Register() {
           <input type="password" required minLength={8} value={form.password} onChange={(e) => update('password', e.target.value)} />
         </div>
         <div className="field">
-          <label>Phone (optional)</label>
-          <input value={form.phone} onChange={(e) => update('phone', e.target.value)} />
+          <label>WhatsApp Phone Number</label>
+          <input
+            type="tel"
+            required
+            placeholder="e.g. 0991234567"
+            value={form.phone}
+            onChange={(e) => update('phone', e.target.value)}
+          />
         </div>
         <div className="field">
           <label>Dietary Notes (optional)</label>

@@ -3,19 +3,32 @@
    structurally near-identical (a form card + a data table), so their
    styling lives together here rather than duplicated six times. */
 
+.admin-main h2 {
+    margin: 0 0 20px;
+    font-size: 1.4rem;
+    color: var(--green-dark);
+}
+
 .admin-form-card {
     background: white;
-    padding: 16px;
+    padding: 18px;
     border-radius: var(--radius);
-    margin-bottom: 24px;
+    box-shadow: var(--shadow);
+    margin-bottom: 28px;
     max-width: 100%;
 }
 
 @media (min-width: 600px) {
     .admin-form-card {
-        padding: 20px;
+        padding: 24px;
         max-width: 560px;
     }
+}
+
+.admin-form-card h3 {
+    margin: 0 0 16px;
+    font-size: 1.05rem;
+    color: var(--green-dark);
 }
 
 .admin-form-actions {
@@ -33,21 +46,56 @@
 .admin-table-wrap {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.admin-table-wrap table {
+    box-shadow: none;
+}
+
+.admin-table-wrap tbody tr:hover {
+    background: #fafaf7;
 }
 
 .admin-row-unread {
     background: var(--green-light);
 }
 
+/* Dashboard stat cards */
+.admin-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px;
+    margin-bottom: 30px;
+}
+
+.admin-stat-card {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 18px 20px;
+    border-left: 4px solid var(--green);
+}
+
 .admin-stat-value {
     font-size: 1.8rem;
     margin: 0;
+    color: var(--green-dark);
+    font-weight: 800;
 }
 
 @media (min-width: 480px) {
     .admin-stat-value {
         font-size: 2rem;
     }
+}
+
+.admin-stat-label {
+    margin: 4px 0 0;
+    font-size: 0.85rem;
+    color: var(--muted);
 }
 
 /* Table action buttons (Edit/Delete) get a bit of vertical gap so they

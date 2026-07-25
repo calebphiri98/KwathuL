@@ -28,49 +28,51 @@ export default function Menu() {
 
   return (
     <section>
-      <h2 className="section-title">Our Menu</h2>
-      <p className="section-sub">Nutrition-conscious meals prepared with care.</p>
+      <div className="container">
+        <h2 className="section-title">Our Menu</h2>
+        <p className="section-sub">Nutrition-conscious meals prepared with care.</p>
 
-      <div className="menu-search-wrap">
-        <input
-          className="menu-search-input"
-          placeholder="Search meals…"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-      </div>
+        <div className="menu-search-wrap">
+          <input
+            className="menu-search-input"
+            placeholder="Search meals…"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
 
-      {items.length > 0 && (
-        <p className="menu-cart-link-wrap">
-          <Link to="/cart" className="btn btn-sm">View Cart ({items.length})</Link>
-        </p>
-      )}
+        {items.length > 0 && (
+          <p className="menu-cart-link-wrap">
+            <Link to="/cart" className="btn btn-sm">View Cart ({items.length})</Link>
+          </p>
+        )}
 
-      <div className="grid">
-        {products.map((p) => (
-          <div className="card" key={p.id}>
-            <img src={p.image_url ? resolveImageUrl(p.image_url) : 'https://placehold.co/400x260?text=Kwathu+Foods'} alt={p.name} />
-            <div className="card-body">
-              <h3>{p.name}</h3>
-              <p>{p.description}</p>
-              <div>
-                {p.is_organic && <span className="tag">Organic</span>}
-                {p.dietary_tags?.map((t) => <span className="tag" key={t}>{t}</span>)}
-              </div>
-              <div className="menu-card-footer">
-                <span className="price">MWK {Number(p.price).toLocaleString()}</span>
-                <button className="btn btn-sm" onClick={() => addItem(p)}>Add to Cart</button>
+        <div className="grid">
+          {products.map((p) => (
+            <div className="card" key={p.id}>
+              <img src={p.image_url ? resolveImageUrl(p.image_url) : 'https://placehold.co/400x260?text=Kwathu+Foods'} alt={p.name} />
+              <div className="card-body">
+                <h3>{p.name}</h3>
+                <p>{p.description}</p>
+                <div>
+                  {p.is_organic && <span className="tag">Organic</span>}
+                  {p.dietary_tags?.map((t) => <span className="tag" key={t}>{t}</span>)}
+                </div>
+                <div className="menu-card-footer">
+                  <span className="price">MWK {Number(p.price).toLocaleString()}</span>
+                  <button className="btn btn-sm" onClick={() => addItem(p)}>Add to Cart</button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-        {products.length === 0 && <p className="empty-state">No meals found.</p>}
+          ))}
+          {products.length === 0 && <p className="empty-state">No meals found.</p>}
+        </div>
+        {page < totalPages && (
+          <p className="text-center">
+            <button className="btn btn-outline" onClick={() => setPage((p) => p + 1)}>Load More</button>
+          </p>
+        )}
       </div>
-      {page < totalPages && (
-        <p className="text-center">
-          <button className="btn btn-outline" onClick={() => setPage((p) => p + 1)}>Load More</button>
-        </p>
-      )}
     </section>
   );
 }

@@ -99,9 +99,15 @@
     color: #a9c7a6;
 }
 
+/* Tablet: keep the compact grid, just drop to 2 columns */
 @media (max-width: 768px) {
+    .footer {
+        padding-top: 44px;
+    }
+
     .footer-content {
         grid-template-columns: repeat(2, 1fr);
+        gap: 32px 24px;
     }
 
     .footer-brand {
@@ -109,17 +115,58 @@
     }
 }
 
+/* Phone: single column, but tight and left-aligned with clear dividers
+   between sections instead of large blank gaps — reads as compact
+   "accordion" list rather than one long centered block. */
 @media (max-width: 480px) {
+    .footer {
+        padding-top: 36px;
+    }
+
     .footer-content {
         grid-template-columns: 1fr;
-        text-align: center;
+        gap: 0;
+        padding-bottom: 8px;
+        text-align: left;
     }
 
     .footer-brand {
-        align-items: center;
+        align-items: flex-start;
+        padding-bottom: 24px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        margin-bottom: 20px;
     }
 
     .footer-tagline {
         max-width: none;
+    }
+
+    .footer-col {
+        padding-bottom: 16px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        margin-bottom: 16px;
+    }
+
+    .footer-col:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    .footer-col h4 {
+        margin-bottom: 10px;
+        font-size: 0.82rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: #9fc39c;
+    }
+
+    .footer-col ul {
+        gap: 8px;
+    }
+
+    .footer-col ul li a,
+    .footer-contact-list li {
+        font-size: 0.88rem;
     }
 }
