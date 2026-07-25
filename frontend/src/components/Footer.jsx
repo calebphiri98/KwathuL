@@ -55,7 +55,7 @@ export default function Footer() {
         <div className="footer-col">
           <h4>Contact</h4>
           <ul className="footer-contact-list">
-            <li>info@kwathufoods.com</li>
+            <li>madalitsochitanda4.com</li>
             <li>Blantyre, Malawi</li>
             <li><Link to="/contact">Send a Message</Link></li>
           </ul>
