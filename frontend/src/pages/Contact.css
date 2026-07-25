@@ -1,0 +1,9 @@
+/* Styles specific to Contact.jsx.
+   The form itself uses the shared .form-page / .field styles from
+   index.css — this file only holds what's unique to this page. */
+
+.contact-message-input {
+    min-height: 120px;
+    /* comfortable size to type into on a phone keyboard */
+    resize: vertical;
+}

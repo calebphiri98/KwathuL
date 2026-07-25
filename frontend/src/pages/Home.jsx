@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { api, resolveImageUrl } from '../api.js';
+import './Home.css';
 
 export default function Home() {
   const [products, setProducts] = useState([]);
@@ -36,11 +37,11 @@ export default function Home() {
               </div>
             </div>
           ))}
-          {products.length === 0 && <p>Meals coming soon.</p>}
+          {products.length === 0 && <p className="empty-state">Meals coming soon.</p>}
         </div>
       </section>
 
-      <section style={{ background: 'var(--green-light)', borderRadius: 12 }}>
+      <section className="home-why-section">
         <h2 className="section-title">Why Kwathu?</h2>
         <div className="grid">
           <div className="card"><div className="card-body"><h3>Organic Farming</h3><p>Ingredients grown with care, from farm to kitchen.</p></div></div>

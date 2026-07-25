@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { api } from '../../api.js';
+import './Admin.css';
 
 const STATUSES = ['pending', 'confirmed', 'preparing', 'out_for_delivery', 'completed', 'cancelled'];
 
@@ -19,12 +20,13 @@ export default function ManageOrders() {
   return (
     <div>
       <h2>Manage Orders</h2>
+      <div className="admin-table-wrap">
       <table>
         <thead><tr><th>Customer</th><th>Total</th><th>Status</th><th>Placed</th><th>Update</th></tr></thead>
         <tbody>
           {orders.map((o) => (
             <tr key={o.id}>
-              <td>{o.customer_name}<br /><small style={{ color: 'var(--muted)' }}>{o.customer_email}</small></td>
+              <td>{o.customer_name}<br /><small className="muted-text">{o.customer_email}</small></td>
               <td>MWK {Number(o.total).toLocaleString()}</td>
               <td>{o.status}</td>
               <td>{new Date(o.created_at).toLocaleDateString()}</td>
@@ -37,6 +39,7 @@ export default function ManageOrders() {
           ))}
         </tbody>
       </table>
+      </div>
     </div>
   );
 }

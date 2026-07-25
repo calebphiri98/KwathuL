@@ -1,0 +1,15 @@
+/* Styles specific to Login.jsx.
+   The form itself uses the shared .form-page / .field / .full-width /
+   .auth-switch classes from index.css — nothing unique needed here yet,
+   but the file exists so page-specific tweaks have a home if you add any. */
+
+.login-page {
+    margin-top: 8vh;
+    /* pushes the card down a bit less abruptly on short mobile viewports */
+}
+
+@media (min-width: 480px) {
+    .login-page {
+        margin-top: 0;
+    }
+}

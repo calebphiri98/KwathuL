@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { api, resolveImageUrl } from '../api.js';
+import './Recipes.css';
 
 export default function Recipes() {
   const [recipes, setRecipes] = useState([]);
@@ -22,7 +23,7 @@ export default function Recipes() {
       <p className="section-sub">A taste of what we make — the full method stays in our kitchen.</p>
       <div className="grid">
         {recipes.map((r) => (
-          <Link to={`/recipes/${r.slug}`} className="card" key={r.id}>
+          <Link to={`/recipes/${r.slug}`} className="card tap-card recipe-card" key={r.id}>
             <img src={r.cover_image_url ? resolveImageUrl(r.cover_image_url) : 'https://placehold.co/400x260?text=Recipe'} alt={r.title} />
             <div className="card-body">
               <h3>{r.title}</h3>
@@ -31,10 +32,10 @@ export default function Recipes() {
             </div>
           </Link>
         ))}
-        {recipes.length === 0 && <p>No recipes published yet.</p>}
+        {recipes.length === 0 && <p className="empty-state">No recipes published yet.</p>}
       </div>
       {page < totalPages && (
-        <p style={{ textAlign: 'center' }}>
+        <p className="text-center">
           <button className="btn btn-outline" onClick={() => setPage((p) => p + 1)}>Load More</button>
         </p>
       )}

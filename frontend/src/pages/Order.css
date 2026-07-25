@@ -1,0 +1,20 @@
+/* Styles specific to Orders.jsx (customer's own order history). */
+
+.order-card {
+    margin-bottom: 16px;
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.order-items-list {
+    padding-left: 18px;
+    margin: 8px 0;
+    line-height: 1.6;
+    /* extra line-height makes multi-item lists easier to scan on a small screen */
+}

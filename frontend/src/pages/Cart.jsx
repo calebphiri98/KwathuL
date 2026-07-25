@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
 import { api } from '../api.js';
+import './Cart.css';
 
 export default function Cart() {
   const { items, updateQuantity, removeItem, subtotal, clearCart } = useCart();
@@ -40,21 +41,21 @@ export default function Cart() {
   return (
     <section className="container">
       <h2 className="section-title">Your Cart</h2>
-      {items.length === 0 && <p style={{ textAlign: 'center' }}>Your cart is empty.</p>}
+      {items.length === 0 && <p className="cart-empty-state">Your cart is empty.</p>}
 
       {items.map((i) => (
         <div className="cart-item" key={i.product.id}>
           <div>
-            <strong>{i.product.name}</strong>
-            <div style={{ color: 'var(--muted)', fontSize: '0.85rem' }}>MWK {Number(i.product.price).toLocaleString()} each</div>
+            <div className="cart-item-name">{i.product.name}</div>
+            <div className="cart-item-unit-price">MWK {Number(i.product.price).toLocaleString()} each</div>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <div className="cart-item-controls">
             <input
               type="number"
               min="1"
               value={i.quantity}
               onChange={(e) => updateQuantity(i.product.id, Number(e.target.value))}
-              style={{ width: 60, padding: 6, borderRadius: 6, border: '1px solid #ddd' }}
+              className="cart-qty-input"
             />
             <button className="btn btn-outline btn-sm" onClick={() => removeItem(i.product.id)}>Remove</button>
           </div>
@@ -62,8 +63,8 @@ export default function Cart() {
       ))}
 
       {items.length > 0 && (
-        <div style={{ marginTop: 20 }}>
-          <h3>Total: MWK {subtotal.toLocaleString()}</h3>
+        <div className="cart-summary">
+          <h3 className="cart-total">Total: MWK {subtotal.toLocaleString()}</h3>
 
           <div className="field">
             <label>Delivery Address</label>
@@ -79,9 +80,11 @@ export default function Cart() {
           </div>
 
           {error && <p className="error-msg">{error}</p>}
-          <button className="btn" onClick={placeOrder} disabled={placing}>
-            {placing ? 'Placing order…' : user ? 'Place Order' : 'Login to Order'}
-          </button>
+          <div className="cart-checkout-wrap">
+            <button className="btn cart-checkout-btn" onClick={placeOrder} disabled={placing}>
+              {placing ? 'Placing order…' : user ? 'Place Order' : 'Login to Order'}
+            </button>
+          </div>
         </div>
       )}
     </section>

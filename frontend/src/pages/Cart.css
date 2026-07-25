@@ -1,0 +1,79 @@
+/* Styles specific to Cart.jsx (cart / checkout page). */
+
+.cart-item {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 14px 0;
+    border-bottom: 1px solid #eee;
+}
+
+@media (min-width: 480px) {
+    .cart-item {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+    }
+}
+
+.cart-item-name {
+    font-weight: 600;
+}
+
+.cart-item-unit-price {
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+.cart-item-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cart-qty-input {
+    width: 64px;
+    min-height: var(--tap);
+    padding: 6px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    /* avoids iOS auto-zoom */
+    text-align: center;
+}
+
+.cart-empty-state {
+    text-align: center;
+    color: var(--muted);
+    padding: 30px 0;
+}
+
+.cart-summary {
+    margin-top: 20px;
+}
+
+.cart-total {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+}
+
+/* On mobile, keep the checkout action reachable without scrolling to the
+   very bottom of a long cart + address form. */
+.cart-checkout-btn {
+    width: 100%;
+}
+
+@media (max-width: 479px) {
+    .cart-checkout-wrap {
+        position: sticky;
+        bottom: 0;
+        background: var(--cream);
+        padding: 10px 0 16px;
+        margin: 0 -16px;
+        padding-left: 16px;
+        padding-right: 16px;
+        box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+    }
+}

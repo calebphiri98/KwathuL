@@ -1,0 +1,17 @@
+/* Styles specific to Blog.jsx (the blog listing page). */
+
+.blog-card {
+    -webkit-tap-highlight-color: transparent;
+    /* removes the grey flash on tap on mobile */
+}
+
+.blog-card:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+}
+
+.blog-empty-state {
+    text-align: center;
+    color: var(--muted);
+    padding: 20px 0;
+}

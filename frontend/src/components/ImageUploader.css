@@ -1,0 +1,26 @@
+/* Styles specific to ImageUploader.jsx (reused across the admin CMS forms). */
+
+.image-uploader-preview {
+    width: 120px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+@media (min-width: 480px) {
+    .image-uploader-preview {
+        width: 140px;
+        height: 100px;
+    }
+}
+
+.image-uploader-status {
+    font-size: 0.8rem;
+    color: var(--muted);
+}
+
+/* File input needs a bit of breathing room as a tap target on mobile */
+.image-uploader-file-input {
+    padding: 8px 0;
+}

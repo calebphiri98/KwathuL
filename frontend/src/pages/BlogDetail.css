@@ -1,0 +1,38 @@
+/* Styles specific to BlogDetail.jsx (single blog post view). */
+
+.blog-detail {
+    max-width: 720px;
+}
+
+.blog-detail-cover {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    /* keeps a consistent, predictable height on any phone width */
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 16px;
+}
+
+.blog-detail h1 {
+    font-size: 1.5rem;
+    line-height: 1.3;
+    margin: 10px 0 6px;
+}
+
+@media (min-width: 640px) {
+    .blog-detail h1 {
+        font-size: 1.9rem;
+    }
+}
+
+.blog-detail-meta {
+    color: var(--muted);
+    font-size: 0.82rem;
+    margin: 0 0 16px;
+}
+
+.blog-detail-content {
+    white-space: pre-line;
+    line-height: 1.7;
+    font-size: 0.98rem;
+}

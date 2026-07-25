@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { api } from '../api.js';
+import './Contact.css';
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
@@ -43,7 +44,7 @@ export default function Contact() {
         </div>
         <div className="field">
           <label>Message</label>
-          <textarea required rows={5} value={form.message} onChange={(e) => update('message', e.target.value)} />
+          <textarea required rows={5} className="contact-message-input" value={form.message} onChange={(e) => update('message', e.target.value)} />
         </div>
         <button className="btn" type="submit">Send Message</button>
       </form>

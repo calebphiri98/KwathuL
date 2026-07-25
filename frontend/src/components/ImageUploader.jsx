@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { uploadImage, resolveImageUrl } from '../api.js';
+import './ImageUploader.css';
 
 // Controlled component: `value` is the stored path (e.g. "/uploads/xxx.jpg"),
 // `onChange(path)` is called with the new path once upload succeeds.
@@ -26,14 +27,15 @@ export default function ImageUploader({ value, onChange, label = 'Image' }) {
     <div className="field">
       <label>{label}</label>
       {value && (
-        <img
-          src={resolveImageUrl(value)}
-          alt="Preview"
-          style={{ width: 140, height: 100, objectFit: 'cover', borderRadius: 8, border: '1px solid #ddd' }}
-        />
+        <img src={resolveImageUrl(value)} alt="Preview" className="image-uploader-preview" />
       )}
-      <input type="file" accept="image/png, image/jpeg, image/webp, image/gif" onChange={handleFile} />
-      {uploading && <span style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>Uploading…</span>}
+      <input
+        type="file"
+        accept="image/png, image/jpeg, image/webp, image/gif"
+        onChange={handleFile}
+        className="image-uploader-file-input"
+      />
+      {uploading && <span className="image-uploader-status">Uploading…</span>}
       {error && <span className="error-msg">{error}</span>}
       <input
         type="text"

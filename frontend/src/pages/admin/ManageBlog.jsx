@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { api } from '../../api.js';
 import ImageUploader from '../../components/ImageUploader.jsx';
+import './Admin.css';
 
 const EMPTY = { title: '', excerpt: '', content: '', cover_image_url: '', category: 'General', tags: '', is_published: true };
 
@@ -55,7 +56,7 @@ export default function ManageBlog() {
   return (
     <div>
       <h2>Manage Blog & Plant Guides</h2>
-      <form onSubmit={handleSubmit} style={{ background: 'white', padding: 20, borderRadius: 10, marginBottom: 30, maxWidth: 560 }}>
+      <form onSubmit={handleSubmit} className="admin-form-card">
         <h3>{editingId ? 'Edit Post' : 'Add Post'}</h3>
         {error && <p className="error-msg">{error}</p>}
         <div className="field"><label>Title</label><input required value={form.title} onChange={(e) => update('title', e.target.value)} /></div>
@@ -71,10 +72,13 @@ export default function ManageBlog() {
         <div className="field">
           <label><input type="checkbox" checked={form.is_published} onChange={(e) => update('is_published', e.target.checked)} /> Published</label>
         </div>
-        <button className="btn" type="submit">{editingId ? 'Update' : 'Add'} Post</button>
-        {editingId && <button type="button" className="btn btn-outline" style={{ marginLeft: 10 }} onClick={resetForm}>Cancel</button>}
+        <div className="admin-form-actions">
+          <button className="btn" type="submit">{editingId ? 'Update' : 'Add'} Post</button>
+          {editingId && <button type="button" className="btn btn-outline" onClick={resetForm}>Cancel</button>}
+        </div>
       </form>
 
+      <div className="admin-table-wrap">
       <table>
         <thead><tr><th>Title</th><th>Category</th><th>Published</th><th>Actions</th></tr></thead>
         <tbody>
@@ -84,13 +88,16 @@ export default function ManageBlog() {
               <td>{p.category}</td>
               <td>{p.is_published ? 'Yes' : 'No'}</td>
               <td>
-                <button className="btn btn-sm btn-outline" onClick={() => startEdit(p)}>Edit</button>{' '}
-                <button className="btn btn-sm btn-danger" onClick={() => handleDelete(p.id)}>Delete</button>
+                <div className="admin-row-actions">
+                  <button className="btn btn-sm btn-outline" onClick={() => startEdit(p)}>Edit</button>
+                  <button className="btn btn-sm btn-danger" onClick={() => handleDelete(p.id)}>Delete</button>
+                </div>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      </div>
     </div>
   );
 }

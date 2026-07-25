@@ -1,0 +1,59 @@
+/* Shared styles for the admin CMS pages (Dashboard, ManageProducts,
+   ManageRecipes, ManageBlog, ManageOrders, Messages). These pages are
+   structurally near-identical (a form card + a data table), so their
+   styling lives together here rather than duplicated six times. */
+
+.admin-form-card {
+    background: white;
+    padding: 16px;
+    border-radius: var(--radius);
+    margin-bottom: 24px;
+    max-width: 100%;
+}
+
+@media (min-width: 600px) {
+    .admin-form-card {
+        padding: 20px;
+        max-width: 560px;
+    }
+}
+
+.admin-form-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+}
+
+.admin-private-note {
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+.admin-table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.admin-row-unread {
+    background: var(--green-light);
+}
+
+.admin-stat-value {
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+@media (min-width: 480px) {
+    .admin-stat-value {
+        font-size: 2rem;
+    }
+}
+
+/* Table action buttons (Edit/Delete) get a bit of vertical gap so they
+   don't sit too close together when a row wraps on a narrow screen. */
+.admin-row-actions {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}

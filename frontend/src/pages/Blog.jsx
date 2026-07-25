@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { api, resolveImageUrl } from '../api.js';
+import './Blog.css';
 
 export default function Blog() {
   const [posts, setPosts] = useState([]);
@@ -22,7 +23,7 @@ export default function Blog() {
       <p className="section-sub">Nutrition tips, plant guides, and stories from the farm.</p>
       <div className="grid">
         {posts.map((p) => (
-          <Link to={`/blog/${p.slug}`} className="card" key={p.id}>
+          <Link to={`/blog/${p.slug}`} className="card tap-card blog-card" key={p.id}>
             <img src={p.cover_image_url ? resolveImageUrl(p.cover_image_url) : 'https://placehold.co/400x260?text=Kwathu+Blog'} alt={p.title} />
             <div className="card-body">
               <span className="tag">{p.category}</span>
@@ -31,10 +32,10 @@ export default function Blog() {
             </div>
           </Link>
         ))}
-        {posts.length === 0 && <p>No posts published yet.</p>}
+        {posts.length === 0 && <p className="empty-state">No posts published yet.</p>}
       </div>
       {page < totalPages && (
-        <p style={{ textAlign: 'center' }}>
+        <p className="text-center">
           <button className="btn btn-outline" onClick={() => setPage((p) => p + 1)}>Load More</button>
         </p>
       )}

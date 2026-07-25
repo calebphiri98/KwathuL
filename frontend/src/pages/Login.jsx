@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
+import './Login.css';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -21,7 +22,7 @@ export default function Login() {
   }
 
   return (
-    <div className="form-page">
+    <div className="form-page login-page">
       <h2>Login</h2>
       {error && <p className="error-msg">{error}</p>}
       <form onSubmit={handleSubmit}>
@@ -33,9 +34,9 @@ export default function Login() {
           <label>Password</label>
           <input type="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
-        <button className="btn" type="submit" style={{ width: '100%' }}>Login</button>
+        <button className="btn full-width" type="submit">Login</button>
       </form>
-      <p style={{ marginTop: 14, fontSize: '0.9rem' }}>
+      <p className="auth-switch">
         No account? <Link to="/register">Sign up</Link>
       </p>
     </div>

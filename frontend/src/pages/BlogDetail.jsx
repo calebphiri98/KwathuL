@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { api, resolveImageUrl } from '../api.js';
+import './BlogDetail.css';
 
 export default function BlogDetail() {
   const { slug } = useParams();
@@ -11,22 +12,22 @@ export default function BlogDetail() {
     api.get(`/blog/${slug}`).then((d) => setPost(d.post)).catch((e) => setError(e.message));
   }, [slug]);
 
-  if (error) return <p style={{ textAlign: 'center', padding: 40 }}>{error}</p>;
-  if (!post) return <p style={{ textAlign: 'center', padding: 40 }}>Loading…</p>;
+  if (error) return <p className="detail-status">{error}</p>;
+  if (!post) return <p className="detail-status">Loading…</p>;
 
   return (
-    <section className="container" style={{ maxWidth: 720 }}>
+    <section className="container blog-detail">
       <img
         src={post.cover_image_url ? resolveImageUrl(post.cover_image_url) : 'https://placehold.co/700x300?text=Kwathu+Blog'}
         alt={post.title}
-        style={{ width: '100%', borderRadius: 12, marginBottom: 20 }}
+        className="blog-detail-cover"
       />
       <span className="tag">{post.category}</span>
       <h1>{post.title}</h1>
-      <p style={{ color: 'var(--muted)', fontSize: '0.85rem' }}>
+      <p className="blog-detail-meta">
         By {post.author_name || 'Kwathu Foods'} · {new Date(post.published_at).toLocaleDateString()}
       </p>
-      <div style={{ whiteSpace: 'pre-line', lineHeight: 1.7 }}>{post.content}</div>
+      <div className="blog-detail-content">{post.content}</div>
     </section>
   );
 }

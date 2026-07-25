@@ -1,0 +1,15 @@
+/* Styles specific to Register.jsx.
+   Uses the shared .form-page / .field / .full-width / .auth-switch
+   classes from index.css. This page has more fields than Login, so on
+   short mobile viewports we trim the top margin to keep the whole form
+   reachable without excess scrolling before the user even starts typing. */
+
+.register-page {
+    margin-top: 20px;
+}
+
+@media (min-width: 480px) {
+    .register-page {
+        margin-top: 50px;
+    }
+}

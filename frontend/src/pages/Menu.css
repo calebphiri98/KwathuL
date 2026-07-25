@@ -1,0 +1,31 @@
+/* Styles specific to Menu.jsx (menu/product listing page). */
+
+.menu-search-wrap {
+    max-width: 400px;
+    margin: 0 auto 20px;
+}
+
+.menu-search-input {
+    width: 100%;
+    min-height: var(--tap);
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    /* keeps iOS from zooming in on focus */
+}
+
+.menu-cart-link-wrap {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Product card action row — stacks price and button on very narrow cards
+   so neither gets squeezed. */
+.menu-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+}

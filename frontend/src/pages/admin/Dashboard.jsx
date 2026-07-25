@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { api } from '../../api.js';
+import './Admin.css';
 
 export default function Dashboard() {
   const [stats, setStats] = useState({ products: 0, recipes: 0, posts: 0, orders: 0, messages: 0 });
@@ -37,7 +38,7 @@ export default function Dashboard() {
         {cards.map((c) => (
           <div className="card" key={c.label}>
             <div className="card-body">
-              <h3 style={{ fontSize: '2rem', margin: 0 }}>{c.value}</h3>
+              <h3 className="admin-stat-value">{c.value}</h3>
               <p>{c.label}</p>
             </div>
           </div>
