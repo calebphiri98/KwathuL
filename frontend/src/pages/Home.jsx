@@ -15,8 +15,8 @@ export default function Home() {
       <div className="hero">
         <h1>Better Food – Better Living</h1>
         <p>
-          Kwathu means "our home." We grow, prepare, and deliver nutrition-conscious meals —
-          from diabetic-friendly dishes to organic, farm-fresh favourites — because healthy
+          Kwathu means "our home." We grow, prepare, and deliver nutrition-conscious meals 
+          from diabetic-friendly dishes to organic, farm-fresh favourites because healthy
           eating should feel like home.
         </p>
         <Link to="/menu" className="btn">Browse the Menu</Link>
