@@ -11,7 +11,6 @@ import orderRoutes from './routes/orders.js';
 import contactRoutes from './routes/contact.js';
 import uploadRoutes from './routes/upload.js';
 import { generalLimiter } from './middleware/rateLimit.js';
-import { issueCsrfToken, verifyCsrfToken } from './middleware/csrf.js';
 
 dotenv.config();
 
@@ -28,8 +27,6 @@ app.use(
 );
 app.use(express.json());
 app.use(cookieParser());
-app.use(issueCsrfToken);
-app.use('/api', verifyCsrfToken);
 app.use('/api', generalLimiter);
 
 // Serve uploaded images statically (used by admin-uploaded product/recipe/blog images)
