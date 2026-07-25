@@ -20,7 +20,7 @@ export default function Recipes() {
   return (
     <section className="container">
       <h2 className="section-title">Recipes</h2>
-      <p className="section-sub">A taste of what we make — the full method stays in our kitchen.</p>
+      <p className="section-sub">A taste of what we make: the full method stays in our kitchen.</p>
       <div className="grid">
         {recipes.map((r) => (
           <Link to={`/recipes/${r.slug}`} className="card tap-card recipe-card" key={r.id}>
