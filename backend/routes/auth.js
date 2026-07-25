@@ -58,7 +58,12 @@ router.post('/register', authLimiter, async (req, res) => {
     res.status(500).json({ error: 'Registration failed.' });
   }
 });
-
+// GET /api/auth/csrf-token
+// Returns the CSRF token in the response body since the frontend
+// (different origin) can't read the csrf_token cookie via document.cookie.
+router.get('/csrf-token', (req, res) => {
+  res.json({ csrfToken: req.csrfToken });
+});
 // POST /api/auth/login
 router.post('/login', authLimiter, async (req, res) => {
   try {

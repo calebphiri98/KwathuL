@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { api } from '../api.js';
+import { api, setCsrfToken } from '../api.js';
 
 const AuthContext = createContext(null);
 
@@ -19,7 +19,16 @@ export function AuthProvider({ children }) {
   }
 
   useEffect(() => {
-    refreshUser();
+    async function init() {
+      try {
+        const { csrfToken } = await api.get('/auth/csrf-token');
+        setCsrfToken(csrfToken);
+      } catch (err) {
+        console.error('Failed to fetch CSRF token', err);
+      }
+      await refreshUser();
+    }
+    init();
   }, []);
 
   async function login(email, password) {
