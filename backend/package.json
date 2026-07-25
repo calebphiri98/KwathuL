@@ -7,7 +7,9 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js",
-    "seed:admin": "node scripts/createAdmin.js"
+    "seed:admin": "node scripts/createAdmin.js",
+    "db:schema": "node scripts/runSqlFile.js ../schema.sql",
+    "db:seed": "node scripts/runSqlFile.js ../seed-data.sql"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
